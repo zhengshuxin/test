@@ -1,6 +1,6 @@
-all: arc assert deref match mybox option1 option3 option rc static t1 t4 tt
+all: arc assert deref match mybox option1 option3 option rc static t1 t4 tt vec pointer
 clean:
-	rm -f arc assert closure deref match mybox option1 option3 option rc static t1 t3 t4 t tt
+	rm -f arc assert closure deref match mybox option1 option3 option rc static t1 t3 t4 t tt vec pointer
 arc: arc.rs
 	rustc arc.rs
 assert: assert.rs
@@ -33,3 +33,7 @@ t: t.rs
 	rustc t.rs
 tt: tt.rs
 	rustc tt.rs
+vec: vec.rs
+	rustc vec.rs
+pointer: pointer.rs
+	rustc pointer.rs

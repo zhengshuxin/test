@@ -1,5 +1,7 @@
 all:
 	@(cd common; make)
+	@(cd express; make)
+	@(cd closure; make)
 	@(cd string; make)
 	@(cd container; make)
 	@(cd channel; make)
@@ -10,6 +12,8 @@ all:
 	@(cd http; make)
 clean:
 	@(cd common; make clean)
+	@(cd express; make clean)
+	@(cd closure; make clean)
 	@(cd string; make clean)
 	@(cd container; make clean)
 	@(cd channel; make clean)
