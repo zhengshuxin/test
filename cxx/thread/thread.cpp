@@ -9,6 +9,9 @@ std::mutex mutex;
 std::condition_variable cond;
 
 static void producer(void) {
+	std::thread::id id = std::this_thread::get_id();
+	std::cout << "Thread producer is " <<  id << std::endl;
+
 	int i = 0;
 	while (true) {
 		std::unique_lock<std::mutex> locker(mutex);
@@ -20,9 +23,12 @@ static void producer(void) {
 }
 
 static void consumer(void) {
+	std::thread::id id = std::this_thread::get_id();
+	std::cout << "Thread consumer is " <<  id << std::endl;
+
 	while (true) {
 		std::unique_lock<std::mutex> locker(mutex);
-		cond.wait(locker, [] { return !dq.empty(); });
+		cond.wait(locker, [=] { return !dq.empty(); });
 		std::cout << "consume: " << dq.front() << std::endl;
 		dq.pop_front();
 		locker.unlock();

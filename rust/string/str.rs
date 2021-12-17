@@ -30,9 +30,27 @@ fn main() {
     println!("{:?}", s.get(..).unwrap());
     println!("{:?}", s.get(0..6).unwrap());
 
-    let mut ss = String::from(s);
+    // str to String
+
+    let mut ss: String = String::from(s);
     ss += " hello world";
-    println!("ss={}", ss);
+    println!("String::from()->ss=>{}, s=>{}", ss, s);
+
+    let mut ss: String = s.to_string();
+    ss.push_str(", zsxxsz");
+    println!("to_string()->ss=>{}, s=>{}", ss, s);
+
+    let ss: String = s.to_owned();
+    println!("to_owned()->ss=>{}, s=>{}", ss, s);
+
+    // String to str
 
     println!("ss={:p}, {:p}", ss.as_ptr(), &ss);
+    let s1: &str = ss.as_str();
+    println!("as_str()->s1={}, ss={}", s1, ss);
+    let s2: &str = &String::from(ss);
+    println!("&String::from()->s2={}", s2);
+
+    // Slice
+    println!("slice str={}", &s2[..10]);
 }

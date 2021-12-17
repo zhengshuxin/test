@@ -14,7 +14,7 @@ fn handle_connection(mut stream: TcpStream) {
 	// --snip--
 	let get = b"GET / HTTP/1.1\r\n";
 	let sleep = b"GET /sleep HTTP/1.1\r\n";
-	let (status_line, filename) = if buffer.starts_with(get) {
+	let (_status_line, _filename) = if buffer.starts_with(get) {
 		("HTTP/1.1 200 OK\r\n\r\n", "hello.html")
 	} else if buffer.starts_with(sleep) {
 		thread::sleep(Duration::from_secs(5));
@@ -26,11 +26,12 @@ fn handle_connection(mut stream: TcpStream) {
 }
 
 fn main() {
-	let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+	let addr = "127.0.0.1:7878";
+	let listener = TcpListener::bind(addr).unwrap();
+	println!("listen on {}", addr);
+
 	for stream in listener.incoming() {
 		let stream = stream.unwrap();
-		thread::spawn(|| {
-				handle_connection(stream);
-				});
+		thread::spawn(|| { handle_connection(stream); });
 	}
 }

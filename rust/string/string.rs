@@ -14,7 +14,7 @@ fn test1() {
     let mut v: Vec<Box<String>> = Vec::new();
     add_strings(&mut v);
     println!("in test1, v's len={}", v.len());
-    thread::sleep(Duration::from_secs(10));
+    thread::sleep(Duration::from_secs(1));
     println!("wakeup!");
 }
 
@@ -29,7 +29,7 @@ fn test2() {
     let mut v: Vec<String> = Vec::new();
     add_strings2(&mut v);
     println!("in test2, v's len={}", v.len());
-    thread::sleep(Duration::from_secs(10));
+    thread::sleep(Duration::from_secs(1));
     println!("wakeup!");
     drop(v);
 }
@@ -37,7 +37,7 @@ fn test2() {
 fn main() {
     test1();
     test2();
-    let s = "hello world".to_string() + "hello world";
+    let s : String = "hello world".to_string() + "hello world";
     println!("s={}", s);
-    thread::sleep(Duration::from_secs(1000));
+    thread::sleep(Duration::from_secs(1));
 }

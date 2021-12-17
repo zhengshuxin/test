@@ -1,9 +1,12 @@
-all: thread future
+all: thread thread2 future
+cflags = -std=c++17
 
 thread: thread.cpp
-	g++ thread.cpp -o thread -lpthread
+	g++ $(cflags) thread.cpp -o thread -lpthread
+thread2: thread2.cpp
+	g++ $(cflags) thread2.cpp -o thread2 -lpthread
 future: future.cpp
-	g++ future.cpp -o future -lpthread
+	g++ $(cflags) future.cpp -o future -lpthread
 
 clean cl:
 	@rm -f thread future
